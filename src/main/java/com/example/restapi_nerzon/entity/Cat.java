@@ -1,16 +1,46 @@
 package com.example.restapi_nerzon.entity;
 
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 @Component
 @Getter
 @Setter
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Entity
+@Table(name = "cats")
 public class Cat {
-    private String name ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    @Column(unique = true)
+
+    private String name;
+
     private int age;
-    private int weight ;
+
+    private int weight;
+
+    public Cat( String name, int age, int weight) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+    }
+
+    public Cat() {
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                '}';
+    }
 }
